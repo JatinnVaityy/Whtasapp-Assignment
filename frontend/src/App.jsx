@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Sidebar from "./components/SideBar.jsx";
+import ChatSidebar from "./components/ChatSidebar.jsx";
 import ChatWindow from "./components/ChatWindow.jsx";
 import { fetchConversations } from "./api/messages.js";
 import { io } from "socket.io-client";
@@ -194,7 +194,7 @@ export default function App() {
     >
       {(showSidebar || window.innerWidth >= 768) && (
         <div className="w-full md:w-80 border-r border-gray-700">
-          <Sidebar
+          <ChatSidebar
             chats={conversations}
             selectedChat={selectedChat}
             onSelect={handleSelect}

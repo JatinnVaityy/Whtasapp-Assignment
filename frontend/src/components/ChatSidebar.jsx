@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChatList from "./ChatList";
 
-export default function Sidebar({ chats, selectedChat, onSelect, onNewChat, darkMode, toggleDarkMode }) {
+export default function ChatSidebar({ chats, selectedChat, onSelect, onNewChat, darkMode, toggleDarkMode }) {
   const [search, setSearch] = useState("");
 
   const filteredChats = chats.filter(chat =>
@@ -20,7 +20,6 @@ export default function Sidebar({ chats, selectedChat, onSelect, onNewChat, dark
         </div>
 
         <div className="flex items-center gap-2">
-          
           <button
             onClick={toggleDarkMode}
             aria-label="Toggle Dark Mode"
