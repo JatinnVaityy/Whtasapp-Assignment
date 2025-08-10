@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Sidebar from "./components/SideBar.jsx";
+import Sidebar from "./components/Sidebar.jsx";
 import ChatWindow from "./components/ChatWindow.jsx";
 import { fetchConversations } from "./api/messages.js";
 import { io } from "socket.io-client";

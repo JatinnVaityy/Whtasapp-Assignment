@@ -8,7 +8,6 @@ export default function Sidebar({ chats, selectedChat, onSelect, onNewChat, dark
     (chat.name || chat.wa_id).toLowerCase().includes(search.toLowerCase())
   );
 
-  // Dynamic bg and text color based on darkMode
   const bgClass = darkMode ? "bg-gray-900 text-white" : "bg-white text-black border-gray-300";
   const borderClass = darkMode ? "border-gray-800" : "border-gray-200";
   const inputBgClass = darkMode ? "bg-gray-800 placeholder-gray-400 text-white" : "bg-gray-100 placeholder-gray-600 text-black";
@@ -21,7 +20,7 @@ export default function Sidebar({ chats, selectedChat, onSelect, onNewChat, dark
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Dark/Light Mode Toggle Button */}
+          
           <button
             onClick={toggleDarkMode}
             aria-label="Toggle Dark Mode"
@@ -29,12 +28,10 @@ export default function Sidebar({ chats, selectedChat, onSelect, onNewChat, dark
             title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             {darkMode ? (
-              // Sun icon for light mode
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m8.485-9h1M4.515 12h1m14.364 6.364l.707.707M5.636 5.636l.707.707m12.728 12.728l.707-.707M6.343 17.657l.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z" />
               </svg>
             ) : (
-              // Moon icon for dark mode
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
               </svg>
