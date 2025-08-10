@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small helper to allow message list bottom padding when keyboard on mobile */
+.message-list {
+  padding-bottom: 80px;
+}
