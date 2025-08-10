@@ -18,35 +18,39 @@ export default function App() {
   const socketRef = useRef(null);
   const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-  // Fetch conversations on mount
   useEffect(() => {
-    fetchConversations()
-      .then((data) => {
-        const prepared = data
-          .map((c) => {
-            c.messages = (c.messages || []).sort(
-              (a, b) => parseInt(a.timestamp || 0) - parseInt(b.timestamp || 0)
-            );
-            const last = c.messages[c.messages.length - 1];
-            c.lastMessage = last?.text?.body || "[Unsupported]";
-            c.lastTimestamp = last
-              ? new Date(parseInt(last.timestamp || 0) * 1000).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              : "";
-            return c;
-          })
-          .sort(
-            (a, b) =>
-              parseInt(b.messages[b.messages.length - 1]?.timestamp || 0) -
-              parseInt(a.messages[a.messages.length - 1]?.timestamp || 0)
+  fetchConversations()
+    .then((data) => {
+      const prepared = data
+        .map((c) => {
+          c.messages = (c.messages || []).sort(
+            (a, b) => parseInt(a.timestamp || 0) - parseInt(b.timestamp || 0)
           );
-        setConversations(prepared);
-        if (!selectedChat && prepared[0]) setSelectedChat(prepared[0]);
-      })
-      .catch(console.error);
-  }, []);
+          const last = c.messages[c.messages.length - 1];
+          c.lastMessage = last?.text?.body || "[Unsupported]";
+          c.lastTimestamp = last
+            ? new Date(parseInt(last.timestamp || 0) * 1000).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })
+            : "";
+          return c;
+        })
+        .sort(
+          (a, b) =>
+            parseInt(b.messages[b.messages.length - 1]?.timestamp || 0) -
+            parseInt(a.messages[a.messages.length - 1]?.timestamp || 0)
+        );
+      setConversations(prepared);
+
+      // Only auto-select first chat on desktop
+      if (!selectedChat && prepared[0] && window.innerWidth >= 768) {
+        setSelectedChat(prepared[0]);
+      }
+    })
+    .catch(console.error);
+}, []);
+
 
   // Setup socket connection and listeners
   useEffect(() => {
